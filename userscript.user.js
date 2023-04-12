@@ -76,15 +76,19 @@
     const inp_box = get_input_box();
     if (inp_box) {
       inp_box.value = txt;
+      //simulateKeydownEventsAndInsert(txt, inp_box);
       trigger_send_click(inp_box);
     }
   }
 
   // Helper function to trigger a click event on the "Send" button
 const trigger_send_click = (inp_box) => {
+  console.log("trigger_send_click():", inp_box);
   if (inp_box) {
     const send_button = inp_box.nextElementSibling;
+    console.log(send_button);
     if (send_button) {
+      send_button.removeAttribute("disabled");
       send_button.click();
     }
   }
@@ -104,9 +108,11 @@ const trigger_send_click = (inp_box) => {
 
   });
 
+
+
 const track_generation = () => {
   const input_div = get_input_div();
-
+  console.log("track_generation");
   if (input_div) {
     VM.observe(input_div, (mutations, observer) => {
       for (let mutation of mutations) {
