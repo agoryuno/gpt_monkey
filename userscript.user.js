@@ -76,8 +76,20 @@
     const inp_box = get_input_box();
     if (inp_box) {
       inp_box.value = txt;
+      trigger_send_click(inp_box);
     }
   }
+
+  // Helper function to trigger a click event on the "Send" button
+const trigger_send_click = (inp_box) => {
+  if (inp_box) {
+    const send_button = inp_box.nextElementSibling;
+    if (send_button) {
+      send_button.click();
+    }
+  }
+}
+
 
   let chat_history = null;
 
