@@ -27,31 +27,31 @@ which will create all necessary files. In this case you can skip the next sectio
 
 1. Install Python requirements using:
 
-    ```
-    pip install -r requirements.txt
-    ```
+```
+pip install -r requirements.txt
+```
 
 2. Generate a `config.ini` file with:
 
-    ```
-    python create_files.py
-    ```
+```
+python create_files.py
+```
 
 3. Create a new user using the `token_manager.py` script. This is needed in case
 the server is exposed to the internet. When creating a user you can provide an integer
 ID or one will be created for you:
 
-    ```
-    python token_manager.py create-user <your_id>
-    ```
+```
+python token_manager.py create-user <your_id>
+```
 
 Note the user ID that the script returns or use your own for the next step.
 
 4. Create the userscript file. This is a JavaScript file that will be injected into the browser tab.
 
-    ```
-    python create_userscript.py <your_user_id>
-    ```
+```
+python create_userscript.py <your_user_id>
+```
 
 ## Installing the userscript
 
@@ -76,9 +76,9 @@ You are done.
 
 To run the server issue the following command from the project's root directory:
 
-    ```
-    python app.py
-    ```
+```
+python app.py
+```
 
 Note, that in order for the service to work, you need to have the browser tab with the ChatGPT interface open.
 
@@ -90,21 +90,21 @@ To make sure everything is working you can use a cURL command to send a request 
 Alternatively you can use the `token_manager.py` script to find your token. First find
 your user ID by running:
 
-    ```
-    python token_manager.py list-users
-    ```
+```
+python token_manager.py list-users
+```
 
 Copy your user ID (there should be only one user) and then run:
 
-    ```
-    python token_manager.py list-tokens <your_user_id>
-    ```
+```
+python token_manager.py list-tokens <your_user_id>
+```
 
 Copy the first token and substitute it for `<your_token>` in the cURL command below:
 
-    ```
-    curl '127.0.0.1:6758/gpt/send_message' -d 'token=<your_token>' -d 'message="Write%20me%20a%20poem"'
-    ```
+```
+curl '127.0.0.1:6758/gpt/send_message' -d 'token=<your_token>' -d 'message="Write%20me%20a%20poem"'
+```
 
 Once the command is executed you should see the response after a short delay. You can
 also watch the browser tab to see the prompt being entered and the response being generated.
@@ -114,19 +114,19 @@ also watch the browser tab to see the prompt being entered and the response bein
 A small Python package is provided to make using the services a little easier. It is automatically installed as part of the requirements.
 To use it:
 
-    ```python
-    import gpt_monkey
-    
-    gpt_monkey.token = "your_token"
-    
-    gpt_monkey.send("Write me a poem.")
-    ```
+```python
+import gpt_monkey
+
+gpt_monkey.token = "your_token"
+
+gpt_monkey.send("Write me a poem.")
+```
     
 If you run the service on a host or port that are different from the default, you'll need to set them with:
 
-    ```python
-    gpt_monkey.host = "your_host"
-    gpt_monkey.port = "your_port"
-    ```
+```python
+gpt_monkey.host = "your_host"
+gpt_monkey.port = "your_port"
+```
     
 
