@@ -69,10 +69,8 @@ def send_message():
 
     message = request.form.get('message')
     token = request.form.get('token')
-    print (token)
     if not check_auth(token):
         return 'Unauthorized', 401
-    print(message)
 
     socketio.emit('message', message)
 
