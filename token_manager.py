@@ -18,12 +18,25 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
 
-def create_user(user_id):
+def generate_unique_id(session):
+    max_id = session.query(User.user_id).order_by(User.user_id.desc()).first()
+
+    if max_id:
+        return max_id[0] + 1
+    else:
+        return 1
+    
+
+def create_user(user_id=None):
     session = Session()
+
+    if user_id is None:
+        user_id = generate_unique_id(session)
+
     existing_user = session.query(User).filter_by(user_id=user_id).first()
 
     if existing_user:
-        print(f"User with Telegram ID {user_id} already exists.")
+        print(f"User with ID {user_id} already exists.")
         return
 
     new_user = User(user_id=user_id)
@@ -37,7 +50,7 @@ def create_user(user_id):
     session.commit()
     session.close()
 
-    print(f"User with Telegram ID {user_id} has been created with default token: {default_token}")
+    print(f"User with ID {user_id} has been created with default token: {default_token}")
 
 
 def find_user(email):
@@ -97,15 +110,16 @@ def main():
 
     create_user_parser = subparsers.add_parser("create-user", 
                                                help="Create a new user")
-    create_user_parser.add_argument("user_id", type=int, help="User Telegram ID")
-
+    create_user_parser.add_argument("--user_id", type=int, default=None, 
+                                     help="User ID (optional)")
+    
     find_user_parser = subparsers.add_parser("find-user", 
-                                             help="Find user by Telegram ID")
-    find_user_parser.add_argument("user_id", type=int, help="User Telegram ID")
+                                             help="Find user by ID")
+    find_user_parser.add_argument("user_id", type=int, help="User ID")
 
     list_tokens_parser = subparsers.add_parser("list-tokens", 
-                                               help="List all tokens for a user by Telegram ID")
-    list_tokens_parser.add_argument("user_id", type=int, help="User Telegram ID")
+                                               help="List all tokens for a user by ID")
+    list_tokens_parser.add_argument("user_id", type=int, help="User ID")
     
     list_users_parser = subparsers.add_parser("list-users", 
                                               help="List all users in the database")
