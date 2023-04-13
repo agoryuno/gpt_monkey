@@ -6,7 +6,7 @@ port = 6758
 
 def send(message: str) -> str:
     assert token is not None, "Token is not set."
-    url = f"http://{host}:{port}/send_message"
+    url = f"http://{host}:{port}/gpt/send_message"
     data = {"token": token, "message": message}
 
     response = requests.post(url, json=data)
