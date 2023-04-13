@@ -55,7 +55,7 @@ python create_userscript.py <your_user_id>
 
 ## Installing the userscript
 
-The userscript `gptmonkey.user.js`, that was created for you during the installation, is
+The userscript `gptmonkey.user.js` that was created for you during the installation is
 located in the project's root directory. You need to install it in your browser.
 
 To do this you need to install a userscript manager. There are several options, but this
