@@ -67,7 +67,7 @@ service was tested with the open source ViolentMonkey extension:
 The exact procedure for installing the userscript depends on the userscript extension you chose.
 
 For ViolentMonkey, you need to click on the monkey icon in the browser toolbar and then
-the large + button in the top right corner. You can then copy the contents of the `gptmonkey.user.js` file and use it to replace all of the content in the script editor. 
+the large + button in the top right corner. You can then copy the contents of the `gptmonkey.user.js` file and use it to replace all of the contents in the script editor. 
 Save and close the tab with the script editor.
 
 You are done.
