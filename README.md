@@ -126,7 +126,7 @@ If you run the service on a host or port that are different from the default, yo
 
 ```python
 gpt_monkey.host = "your_host"
-gpt_monkey.port = "your_port"
+gpt_monkey.port = your_port
 ```
     
 
