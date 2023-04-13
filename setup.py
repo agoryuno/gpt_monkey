@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="gpt_monkey",
@@ -7,7 +7,7 @@ setup(
     author_email="alex.goryunov@gmail.com",
     description="A package for interacting with GPT-Monkey",
     url="https://github.com/agoryuno/gpt_monkey",
-    packages=["gpt_monkey"],
+    packages=find_packages("src"),
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
