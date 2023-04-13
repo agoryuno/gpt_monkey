@@ -9,7 +9,7 @@ def send(message: str) -> str:
     url = f"http://{host}:{port}/gpt/send_message"
     data = {"token": token, "message": message}
 
-    response = requests.post(url, json=data)
+    response = requests.post(url, data=data)
 
     response.raise_for_status()
 
