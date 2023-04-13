@@ -3,3 +3,4 @@
 /data.sqlite
 sqlalchemy
 .venv/*
+gptmonkey.user.js

@@ -16,3 +16,4 @@ typing_extensions==4.5.0
 Werkzeug==2.2.3
 zope.event==4.6
 zope.interface==6.0
+git+https://github.com/agoryuno/gpt_monkey

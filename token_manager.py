@@ -27,6 +27,27 @@ def generate_unique_id(session):
         return 1
     
 
+def delete_user(user_id):
+    session = Session()
+    user = session.query(User).filter_by(user_id=user_id).first()
+
+    if not user:
+        print(f"No user found with ID: {user_id}")
+        return
+
+    tokens = session.query(Token).filter_by(user_id=user_id).all()
+
+    for token in tokens:
+        session.delete(token)
+
+    session.delete(user)
+    session.commit()
+    session.close()
+
+    print(f"User with ID {user_id} and their associated tokens have been deleted.")
+
+
+
 def create_user(user_id=None):
     session = Session()
 
@@ -126,6 +147,10 @@ def main():
 
     create_database_parser = subparsers.add_parser("create-database", 
                                                    help="Create the database at the specified path in the config file")
+    delete_user_parser = subparsers.add_parser("delete-user", 
+                                               help="Delete a user by ID and all their associated tokens")
+    delete_user_parser.add_argument("user_id", type=int, help="User ID")
+
 
     args = parser.parse_args()
 
@@ -139,6 +164,8 @@ def main():
         list_users()
     elif args.command == "create-database":
         create_database()
+    elif args.command == "delete-user":
+        delete_user(args.user_id)
     else:
         parser.print_help()
 

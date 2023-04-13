@@ -1,13 +1,11 @@
 // ==UserScript==
 // @name         ChatGPT browser interface
-// @namespace    https://github.com/agoryuno/gpt4_monkey
+// @namespace    https://github.com/agoryuno/gpt_monkey
 // @version      0.0.1
 // @description  Allows programmatic access to ChatGPT in the browser
 // @author       Alex Goryunov
 // @match        https://chat.openai.com/*
 // @grant        none
-// @updateURL    https://github.com/agoryuno/gpt_monkey/raw/master/userscript.user.js
-// @downloadURL  https://github.com/agoryuno/gpt_monkey/raw/master/userscript.user.js
 // @require      http://127.0.0.1:6758/resources/js/socket.io.js
 // @require      https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // ==/UserScript==
@@ -25,8 +23,8 @@
   }};
 
   // Constants
-  const HOST = 'ws://127.0.0.1';
-  const PORT = 6758;
+  const HOST = 'ws://{host}';
+  const PORT = {port};
   const TOKEN = '{token}';
 
   // Create WebSocket URL with token parameter
