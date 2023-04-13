@@ -1,5 +1,3 @@
-import uuid
-
 from sqlalchemy import create_engine
 from sqlalchemy.pool import StaticPool
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -39,8 +37,9 @@ Base.metadata.create_all(engine)
 session_factory = sessionmaker(bind=engine)
 Session = scoped_session(session_factory)
 
-message_received_event = Event()
+#message_received_event = Event()
 received_messages = {}
+events_by_sid = {}
 
 # The server runs locally and serves a single client at a time
 sid = None
@@ -76,11 +75,14 @@ def send_message():
 
     socketio.emit('message', message)
 
+    event = Event()
+    events_by_sid[sid] = event
+
     try:
-        with Timeout(TIMEOUT):  # Set the desired timeout value in seconds
-            message_received_event.wait()
+        with Timeout(TIMEOUT):  
+            event.wait()
             received_message = received_messages.pop(sid, 'Error: No message received')
-            message_received_event.clear()
+            event.clear()
             return received_message
     except Timeout:
         return 'Error: Timeout occurred while waiting for a response'
@@ -107,7 +109,9 @@ def handle_disconnect():
 def handle_message(txt):
     print('received message: ' + txt)
     received_messages[request.sid] = txt
-    message_received_event.set()
+    event = events_by_sid.get(request.sid)
+    if event:
+        event.set()
 
 
 if __name__ == '__main__':
