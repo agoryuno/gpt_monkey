@@ -9,7 +9,7 @@ GPT3.5 can be used without a subscription, of course.
 ## How it works
 
 It sets up a Flask app that listens for requests containing a prompt message and relays the message to a userscript running in a 
-browser tab opened on the 'chat.openai.com' URL. The userscript enters the prompt into the input box of the ChatGPT interface, waits for
+browser tab opened on the `chat.openai.com` URL. The userscript enters the prompt into the input box of the ChatGPT interface, waits for
 the response to be fully generated and sends it back to the Flask app, which relays it back to the caller.
 
 It is left up to the user to open the page in the browser and select the needed GPT model in the dropdown at the top of the page.
