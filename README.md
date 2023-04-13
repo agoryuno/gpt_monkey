@@ -27,7 +27,7 @@ which will create all necessary files. In this case you can skip the next sectio
 
 1. Install Python requirements using:
 
-    pip install -r requirements.txt
+    `pip install -r requirements.txt`
 
 2. Generate a `config.ini` file with:
 
