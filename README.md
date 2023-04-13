@@ -21,7 +21,7 @@ Before installing make sure that you have Python 3.8+ installed. You can check y
 ### Quick and easy installation
 
 If your OS supports it (e.g., it is not Windows), you can run the `install.sh` script 
-which will create all necessary files. In this case you can skip the next section.
+which will create all the necessary files. In this case you can skip the next section.
 
 ### Manual installation
 
