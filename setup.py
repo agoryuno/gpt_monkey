@@ -7,7 +7,7 @@ setup(
     author_email="alex.goryunov@gmail.com",
     description="A package for interacting with GPT-Monkey",
     url="https://github.com/agoryuno/gpt_monkey",
-    packages=find_packages("src"),
+    packages=["gpt_monkey"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
