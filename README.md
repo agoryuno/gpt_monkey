@@ -93,4 +93,20 @@ Copy the first token and substitute it for `<your_token>` in the cURL command be
 Once the command is executed you should see the response after a short delay. You can
 also watch the browser tab to see the prompt being entered and the response being generated.
 
+## Using from Python
+
+A small Python package is provided to make using the services a little easier. It is automatically installed as part of the requirements.
+To use it:
+
+    import gpt_monkey
+    
+    gpt_monkey.token = "your_token"
+    
+    gpt_monkey.send("Write me a poem.")
+    
+If you run the service on a host or port that are different from the default, you'll need to set them with:
+
+    gpt_monkey.host = "your_host"
+    gpt_monkey.port = "your_port"
+    
 
