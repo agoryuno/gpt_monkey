@@ -1,6 +1,6 @@
 # gpt_monkey
 
-This is a Flask service that creates a local API server for ChatGPT. Its' primary purpose is to allow programmatic access to GPT4.
+This is a Flask service that creates a local API server for ChatGPT. Its primary purpose is to allow programmatic access to GPT4.
 
 It doesn't require an OpenAI API key, but since GPT4 in ChatGPT is available only to
 *ChatGPT Plus* users - you'll need to be subscribed to that service to use the latest model.
