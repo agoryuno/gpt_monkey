@@ -107,7 +107,7 @@ curl '127.0.0.1:6758/gpt/send_message' -d 'token=<your_token>' -d 'message="Writ
 ```
 
 Once the command is executed you should see the response after a short delay. You can
-also watch the browser tab to see the prompt being entered and the response being generated.
+also watch the browser tab to see the prompt being entered and the response being generated. 
 
 ## Using from Python
 
