@@ -1,3 +1,9 @@
+from gevent import monkey
+monkey.patch_all()
+
+from gevent.event import Event
+from gevent.timeout import Timeout
+
 from sqlalchemy import create_engine
 from sqlalchemy.pool import StaticPool
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -8,8 +14,6 @@ from gevent.timeout import Timeout
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_socketio import SocketIO
-from gevent import monkey
-monkey.patch_all()
 
 from database.database import Token, Base
 from utils import get_config
