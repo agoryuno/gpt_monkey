@@ -4,3 +4,4 @@
 sqlalchemy
 .venv/*
 gptmonkey.user.js
+database/__pycache__/

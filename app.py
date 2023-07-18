@@ -4,9 +4,9 @@ monkey.patch_all()
 from gevent.event import Event
 from gevent.timeout import Timeout
 
-from sqlalchemy import create_engine
-from sqlalchemy.pool import StaticPool
-from sqlalchemy.orm import scoped_session, sessionmaker
+#from sqlalchemy import create_engine
+#from sqlalchemy.pool import StaticPool
+#from sqlalchemy.orm import scoped_session, sessionmaker
 
 from gevent.event import Event
 from gevent.timeout import Timeout
@@ -15,7 +15,7 @@ from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_socketio import SocketIO
 
-from database.database import Token, Base
+#from database.database import Token, Base
 from utils import get_config
 
 app = Flask(__name__)
@@ -34,12 +34,12 @@ TIMEOUT = int(config["MAIN"]["TIMEOUT"])
 # Set the directory to serve files from
 FILES_PATH = 'resources'
 
-engine = create_engine(DB_PATH, 
-                       connect_args={"check_same_thread": False}, 
-                       poolclass=StaticPool)
-Base.metadata.create_all(engine)
-session_factory = sessionmaker(bind=engine)
-Session = scoped_session(session_factory)
+#engine = create_engine(DB_PATH, 
+#                       connect_args={"check_same_thread": False}, 
+#                       poolclass=StaticPool)
+#Base.metadata.create_all(engine)
+#session_factory = sessionmaker(bind=engine)
+#Session = scoped_session(session_factory)
 
 #message_received_event = Event()
 received_messages = {}
@@ -73,8 +73,8 @@ def send_message():
 
     message = request.form.get('message')
     token = request.form.get('token')
-    if not check_auth(token):
-        return 'Unauthorized', 401
+    #if not check_auth(token):
+    #    return 'Unauthorized', 401
 
     socketio.emit('message', message)
 
@@ -94,8 +94,8 @@ def send_message():
 @socketio.on('connect')
 def handle_connect():
     token = request.args.get('token')
-    if not check_auth(token):
-        return 'Unauthorized', 401
+    #if not check_auth(token):
+    #    return 'Unauthorized', 401
     global sid
     sid = request.sid
     print('Client connected:', request.sid)
