@@ -25,10 +25,9 @@
   // Constants
   const HOST = 'ws://{host}';
   const PORT = {port};
-  const TOKEN = '{token}';
 
   // Create WebSocket URL with token parameter
-  const webSocketURL = `${{HOST}}:${{PORT}}?token=${{encodeURIComponent(TOKEN)}}`;
+  const webSocketURL = `${{HOST}}:${{PORT}}`;
 
   // Create WebSocket connection
   const socket = io(webSocketURL);
@@ -65,19 +64,22 @@
   const get_input_div = () => {{
     const idiv = document.querySelector('main div>form>div');
     if (idiv) {{
-      return idiv;
+        return idiv;
     }}
     return false;
-  }}
+}}
 
-  const set_input_value = (txt) => {{
-    const inp_box = get_input_box();
+const set_input_value = (txt) => {{
+    const inp_div = get_input_div();
+    const text_area = get_input_box();
     if (inp_box) {{
-      inp_box.value = txt;
-      //simulateKeydownEventsAndInsert(txt, inp_box);
-      trigger_send_click(inp_box);
+        const button = inp_div.querySelector('button');
+        if (button) {{
+            text_area.value = txt;
+            trigger_send_click(button);
+        }}
     }}
-  }}
+}}
 
   // Helper function to trigger a click event on the "Send" button
 const trigger_send_click = (inp_box) => {{
@@ -105,7 +107,6 @@ const trigger_send_click = (inp_box) => {{
     }}
 
   }});
-
 
 
 const track_generation = () => {{

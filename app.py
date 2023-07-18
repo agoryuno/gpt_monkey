@@ -34,33 +34,12 @@ TIMEOUT = int(config["MAIN"]["TIMEOUT"])
 # Set the directory to serve files from
 FILES_PATH = 'resources'
 
-#engine = create_engine(DB_PATH, 
-#                       connect_args={"check_same_thread": False}, 
-#                       poolclass=StaticPool)
-#Base.metadata.create_all(engine)
-#session_factory = sessionmaker(bind=engine)
-#Session = scoped_session(session_factory)
-
-#message_received_event = Event()
 received_messages = {}
 events_by_sid = {}
 
 # The server runs locally and serves a single client at a time
 sid = None
 
-
-def check_auth(token=None):
-    if token is None:
-        return False
-    # Validate token from the database
-    session = Session()
-    with session.begin():
-        token_record = session.query(Token).filter(Token.token == token).first()
-
-    if token_record is None:
-        return False
-    return True
-    
 
 @app.route('/resources/<path:path>')
 def serve_files(path):
@@ -72,9 +51,6 @@ def send_message():
     assert sid is not None, "No client connected"
 
     message = request.form.get('message')
-    token = request.form.get('token')
-    #if not check_auth(token):
-    #    return 'Unauthorized', 401
 
     socketio.emit('message', message)
 
@@ -93,9 +69,6 @@ def send_message():
 
 @socketio.on('connect')
 def handle_connect():
-    token = request.args.get('token')
-    #if not check_auth(token):
-    #    return 'Unauthorized', 401
     global sid
     sid = request.sid
     print('Client connected:', request.sid)
